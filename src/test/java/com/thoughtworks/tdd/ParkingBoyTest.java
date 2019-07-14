@@ -72,6 +72,7 @@ public class ParkingBoyTest {
         Assertions.assertNull(fetchCarAgain);
 
     }
+
     @Test
     void should_not_return_ticket_when_park_given_bigger_than_capacity(){
         //Given
@@ -106,6 +107,26 @@ public class ParkingBoyTest {
 
         //Then
         Assertions.assertNull(ticket11);
+
+    }
+
+    @Test
+    void should_get_responce_when_fetch_car_given_wrong_ticket(){
+        //Given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+
+
+        //When
+        Car fetchCar = parkingBoy.fetch(ticket);
+        Car fetchCarAgain = parkingBoy.fetch(ticket);
+        String response = ticket.getResponse();
+        String errorMessage = "Unrecognized parking ticket.";
+
+        //Then
+        Assertions.assertSame(response,errorMessage);
 
     }
 

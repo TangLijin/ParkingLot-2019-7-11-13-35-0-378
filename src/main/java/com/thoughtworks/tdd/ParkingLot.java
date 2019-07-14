@@ -33,6 +33,7 @@ public class ParkingLot {
 //        return cars.get(ticket);
 //        return car;
         if(ticket == null || !(cars.keySet().contains(ticket))){
+            ticket.setResponse("Unrecognized parking ticket.");
             return null;
         }else {
             Iterator<Map.Entry<Ticket,Car>> it = cars.entrySet().iterator();
