@@ -1,6 +1,8 @@
 package com.thoughtworks.tdd;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ParkingLot {
 //    private Car car;
@@ -23,7 +25,14 @@ public class ParkingLot {
         if(ticket == null || !(cars.keySet().contains(ticket))){
             return null;
         }else {
-            return cars.get(ticket);
+            Iterator<Map.Entry<Ticket,Car>> it = cars.entrySet().iterator();
+            Car result = cars.get(ticket);
+            while (it.hasNext()){
+                Map.Entry<Ticket,Car> c = it.next();
+                if(c.getKey() == ticket)
+                    it.remove();
+            }
+            return result;
         }
     }
 

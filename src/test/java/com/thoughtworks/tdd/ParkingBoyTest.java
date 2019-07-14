@@ -51,7 +51,27 @@ public class ParkingBoyTest {
         //When
         Car fetchCar = parkingBoy.fetch(null);
         //Then
-        
+
         Assertions.assertNull(fetchCar);
     }
+
+    @Test
+    void should_not_return_car_when_fetch_cars_given__ticket_already_used(){
+        //Given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+
+
+        //When
+        Car fetchCar = parkingBoy.fetch(ticket);
+        Car fetchCarAgain = parkingBoy.fetch(ticket);
+
+        //Then
+        Assertions.assertNull(fetchCarAgain);
+
+    }
+
+
 }
