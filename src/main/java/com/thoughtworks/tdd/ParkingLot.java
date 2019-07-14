@@ -20,6 +20,13 @@ public class ParkingLot {
     public Car getCar(Ticket ticket) {
 //        return cars.get(ticket);
 //        return car;
-        return cars.get(ticket);
+        if(ticket == null || !(cars.keySet().contains(ticket))){
+            return null;
+        }else {
+            return cars.get(ticket);
+        }
     }
+
+
+
 }
