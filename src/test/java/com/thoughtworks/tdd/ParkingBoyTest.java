@@ -122,8 +122,30 @@ public class ParkingBoyTest {
         //When
         Car fetchCar = parkingBoy.fetch(ticket);
         Car fetchCarAgain = parkingBoy.fetch(ticket);
-        String response = ticket.getResponse();
+        String response = parkingLot.getResponse();
         String errorMessage = "Unrecognized parking ticket.";
+
+        //Then
+        Assertions.assertSame(response,errorMessage);
+
+    }
+
+    @Test
+    void should_get_responce_when_fetch_car_given_no_ticket(){
+        //Given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        //Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = null;
+
+        //When
+        Car fetchCar = parkingBoy.fetch(ticket);
+        String errorMessage = null;
+        if(ticket == null)
+            errorMessage = "Please provide your parking ticket.";
+        String response = parkingLot.getResponse();
+
 
         //Then
         Assertions.assertSame(response,errorMessage);

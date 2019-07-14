@@ -10,6 +10,7 @@ public class ParkingLot {
 //    private List<Car> cars = new ArrayList<>();
     private HashMap<Ticket,Car> cars = new HashMap<>();
     private int capacity = 10;
+    private String response  = null;
 
     public void park(Ticket ticket, Car car){
 //        if(this.car == null) {
@@ -29,11 +30,19 @@ public class ParkingLot {
         return capacity;
     }
 
+    public String getResponse() {
+        return response;
+    }
+
     public Car getCar(Ticket ticket) {
 //        return cars.get(ticket);
 //        return car;
-        if(ticket == null || !(cars.keySet().contains(ticket))){
-            ticket.setResponse("Unrecognized parking ticket.");
+        if(ticket == null) {
+            response = "Please provide your parking ticket.";
+            return null;
+        }
+        else if(!(cars.keySet().contains(ticket))){
+            response = "Unrecognized parking ticket.";
             return null;
         }else {
             Iterator<Map.Entry<Ticket,Car>> it = cars.entrySet().iterator();
