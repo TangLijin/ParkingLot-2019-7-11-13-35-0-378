@@ -13,7 +13,7 @@ public class ParkingBoy {
 
     public Ticket park(Car car){
         Ticket ticket = new Ticket(car);
-        parkingLot.park(car);;
+        parkingLot.park(ticket,car);;
         return ticket;
     }
 }
