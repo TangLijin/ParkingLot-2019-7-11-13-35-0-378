@@ -9,6 +9,7 @@ public class ParkingLot {
 //    private Car carTwo;
 //    private List<Car> cars = new ArrayList<>();
     private HashMap<Ticket,Car> cars = new HashMap<>();
+    private int capacity = 10;
 
     public void park(Ticket ticket, Car car){
 //        if(this.car == null) {
@@ -16,7 +17,16 @@ public class ParkingLot {
 ////        }else{
 ////            this.carTwo = car;
 ////        }
-        cars.put(ticket,car);
+        if(cars.size() <= capacity)
+            cars.put(ticket,car);
+    }
+
+    public HashMap<Ticket, Car> getCars() {
+        return cars;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     public Car getCar(Ticket ticket) {

@@ -12,8 +12,12 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car){
-        Ticket ticket = new Ticket(car);
-        parkingLot.park(ticket,car);;
-        return ticket;
+        if(parkingLot.getCars().size() < parkingLot.getCapacity()) {
+            Ticket ticket = new Ticket(car);
+            parkingLot.park(ticket, car);
+            return ticket;
+        }else {
+            return null;
+        }
     }
 }
